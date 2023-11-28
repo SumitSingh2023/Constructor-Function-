@@ -1,99 +1,57 @@
-/*### Sales Total
+/*Task: Design an online bookstore system using object-oriented principles.
 
-Write a function called `calculateSalesTotals()`
- which returns an array with new two new keys (sale and total). The key 'sale' equals the calculated sale price based on the original price and the discount. The key 'total' equals the computed total based on stock, the original price and the discount. The default value would be 0.0.
+Instructions:
 
-/*SAMPLE INPUT :
+Create constructor functions for Book and Author to represent books and authors.
 
-var sales = [
-  { item: 'PS4 Pro', stock: 3, original: 399.99 },
-  { item: 'Xbox One X', stock: 1, original: 499.99, discount: 0.1 },
-  { item: 'Nintendo Switch', stock: 4, original: 299.99 },
-  { item: 'PS2 Console', stock: 1, original: 299.99, discount: 0.8 },
-  { item: 'Nintendo 64', stock: 2, original: 199.99, discount: 0.65 }
-];
+The Author constructor should take name, birthYear, and nationality as arguments.
 
-EXPECTED OUTPUT (array of objects):
+The Book constructor should take title, author (an Author object), genre, and price as arguments.
+
+Implement methods in the Book prototype:
+
+getBookInfo - to print the book's title, author's name,genre, and price.
+
+Create an online bookstore by creating instances of Book and Author objects.
+
+Display the book details for each book in the bookstore.*/
 
 
-[
-  {
-    item: "PS4 Pro",
-    original: 399.99,
-    sale: 399.99,
-    stock: 3,
-    total: 1199.97
-  },
-  {
-    discount: 0.1,
-    item: "Xbox One X",
-    original: 499.99,
-    sale: 449.991,
-    stock: 1,
-    total: 449.991
-  },
-  {
-    item: "Nintendo Switch",
-    original: 299.99,
-    sale: 299.99,
-    stock: 4,
-    total: 1199.96
-  },
-  {
-    discount: 0.8,
-    item: "PS2 Console",
-    original: 299.99,
-    sale: 59.99799999999999,
-    stock: 1,
-    total: 59.99799999999999
-  },
-  {
-    discount: 0.65,
-    item: "Nintendo 64",
-    original: 199.99,
-    sale: 69.9965,
-    stock: 2,
-    total: 139.993
-  }
-]   */
 
-function calculateSalesTotals(sales) {
-    let updatedSales = [];
-  
-    for (let i = 0; i < sales.length; i++) {
-      let item = sales[i];
-      let discount = item.discount || 0;
-      let salePrice = item.original * (1 - discount);
-      let total = item.stock * salePrice;
-  
-      let updatedItem = {
-        discount: item.discount || 0,
-        item: item.item,
-        original: item.original,
-        sale: salePrice .toFixed(3),
-        stock: item.stock,
-        total: total .toFixed(3),
-      };
-  
-      updatedSales.push(updatedItem);
-    }
-  
-    return updatedSales;
-  }
-  
-  // Sample input
-  let sales = [
-    { item: 'PS4 Pro', stock: 3, original: 399.99 },
-    { item: 'Xbox One X', stock: 1, original: 499.99, discount: 0.1 },
-    { item: 'Nintendo Switch', stock: 4, original: 299.99 },
-    { item: 'PS2 Console', stock: 1, original: 299.99, discount: 0.8 },
-    { item: 'Nintendo 64', stock: 2, original: 199.99, discount: 0.65 }
-  ];
-  
-  // Calculate sales totals
-  let updatedSales = calculateSalesTotals(sales);
-  console.log(updatedSales);
-  
-  
+// Author Constructor
+function Author(name, birthYear, nationality) {
+    this.name = name;
+    this.birthYear = birthYear;
+    this.nationality = nationality;
+}
+
+// Book Constructor
+function Book(title, author, genre, price) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.price = price;
+}
+
+// Implementing getBookInfo method in Book prototype
+Book.prototype.getBookInfo = function() {
+    console.log(`Title: ${this.title}`);
+    console.log(`Author: ${this.author.name}`);
+    console.log(`Genre: ${this.genre}`);
+    console.log(`Price: $${this.price}`);
+    console.log("---------------------------------------");
+};
+
+// Creating Author instances
+const author1 = new Author("J.K. Rowling", 1965, "British");
+const author2 = new Author("George R.R. Martin", 1948, "American");
+
+// Creating Book instances
+const book1 = new Book("Harry Potter and the Philosopher's Stone", author1, "Fantasy", 25);
+const book2 = new Book("A Game of Thrones", author2, "Fantasy", 30);
+
+// Displaying book details
+book1.getBookInfo();
+book2.getBookInfo();
 
 
